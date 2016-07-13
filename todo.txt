@@ -1,0 +1,15 @@
+View:
+
+app/
+    List: add(), clean()
+        ListItem: remove(), move()
+            FunctionGraphConfig: enabled
+                FunctionType in {ax2bxc, ...}
+                FunctionParameters: a, b, c
+                DisplayAttributes: color, pattern
+    FunctionView
+        Chart
+        Grid
+        
+        
++testing
