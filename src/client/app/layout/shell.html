@@ -7,8 +7,9 @@
         <div data-ng-view></div>
 
         <div data-ng-controller="Shell">
-            <vg-list-widget click-create-item="buyNewFruit()" click-remove-all-items="removeAllFruits()">
-                <vg-list-item data-ng-repeat="fruit in fruitList" data-item-id="{{fruit.id}}" click-remove-item="removeFruit(itemId)">
+            <vg-list-widget data-click-create-item="buyNewFruit()" data-click-remove-all-items="removeAllFruits()">
+                <vg-list-item data-ng-repeat="fruit in fruitList" data-item-id="{{fruit.id}}" data-click-remove-item="removeFruit(itemId)">
+                    <div data-vg-status-decorator data-status="fruit.status" />
                     {{fruit.name}}
                     <vg-num-args-input-widget data-key-value-pairs="fruit.attrs"/>
                 </vg-list-item>
