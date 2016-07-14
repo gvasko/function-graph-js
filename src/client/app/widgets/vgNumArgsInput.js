@@ -3,15 +3,15 @@
     
     angular
         .module('app.widgets')
-        .directive('vgNumArgsInputWidget', vgNumArgsInputWidget);
+        .directive('vgNumArgsInputWidget', vgNumArgsInput);
         
-    function vgNumArgsInputWidget() {
+    function vgNumArgsInput() {
         var directive = {
             restrict: 'E',
             scope: {
                 keyValuePairs: "="
             },
-            templateUrl: 'app/widgets/vgNumArgsInputWidget.html'
+            templateUrl: 'app/widgets/vgNumArgsInput.html'
         };
         
         return directive;
