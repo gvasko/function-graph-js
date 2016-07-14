@@ -7,23 +7,23 @@
         <title data-ng-bind="title"></title>
         
         <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-        
+        <link href="/src/client/content/app.css" rel="stylesheet" />
         
     </head>
     <body>
         <div>
             <div data-ng-include="'app/layout/shell.html'"></div>
         </div>
-        
+    
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         
-        <script type="text/javascript" src="/src/client/app/app.module.js"></script>
+        <script src="/src/client/app/app.module.js"></script>
 
-        <script type="text/javascript" src="/src/client/app/widgets/widgets.module.js"></script>
-        <script type="text/javascript" src="/src/client/app/widgets/vgListWidget.js"></script>
+        <script src="/src/client/app/widgets/widgets.module.js"></script>
+        <script src="/src/client/app/widgets/vgListWidget.js"></script>
 
     </body>
 </html>
