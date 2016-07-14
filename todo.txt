@@ -4,8 +4,9 @@ app/
     List: add(), clean()
         ListItem: remove(), move()
             FunctionGraphConfig: enabled
-                FunctionType in {ax2bxc, ...}
-                FunctionParameters: a, b, c
+                //FunctionType in {ax2bxc, ...}
+                //FunctionParameters: a, b, c
+                AbstractFunction 
                 DisplayAttributes: color, pattern
     FunctionView
         Chart
