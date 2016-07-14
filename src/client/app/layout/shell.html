@@ -6,7 +6,7 @@
         Hello, Section!
         <div data-ng-view></div>
 
-        <div class="container col-sm-6" data-ng-controller="Shell">
+        <div class="col-sm-6" data-ng-controller="Shell">
 
             <vg-list-widget 
                 data-item-list="fruitList"
@@ -17,6 +17,14 @@
                 data-click-remove-item="removeFruit(itemId)"
                 data-click-remove-all-items="removeAllFruits()"
                 />
+        </div>
+        <div class="col-sm-6">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#">Table</a></li>
+                <li role="presentation"><a href="#">Grid</a></li>
+                <li role="presentation"><a href="#">Chart</a></li>
+                
+            </ul>
         </div>
 
     </section>

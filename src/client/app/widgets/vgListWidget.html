@@ -2,7 +2,7 @@
     <vg-list-item data-ng-repeat="item in itemList" data-item-id="{{item.id}}" data-remove-item-text="{{removeItemText}}" data-click-remove-item="clickRemoveItem({itemId:itemId})">
         <div class="form-group">
             <vg-status-decorator data-status="item.status"/>
-            <label>{{item.text}}</label>
+            <label class="vg-list-item-label">{{item.text}}</label>
         </div>
         <vg-num-args-input-widget data-key-value-pairs="item.attrs"/>
     </vg-list-item>

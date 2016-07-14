@@ -6,6 +6,10 @@
     border-radius: 5px;
 }
 
+.vg-list-item-label {
+    width: 150px;
+}
+
 .vg-btn-group {
     padding: 5px;
 }
