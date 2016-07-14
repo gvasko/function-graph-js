@@ -8,18 +8,26 @@
     Shell.$inject = ['$scope'];
     
     function Shell($scope) {
-        $scope.nextFruitId = 0;
+        $scope.nextFuncId = 0;
         
-        $scope.fruitList = [];
+        $scope.functionList = [];
         
-        $scope.prototypes = ['Apple', 'Banana', 'Appricot', 'Plum', 'Strawberry'];
+        $scope.prototypes = [
+            {
+                functionType: 'a*x+b',
+                args: ['a', 'b']
+            },
+            {
+                functionType: 'a*x^2+b*x+c',
+                args: ['a', 'b', 'c']
+            }
+        ];
         
-        $scope.removeFruit = function(id) {
-            console.log('Remove fruit: ' + id);
-            var index = findFirstIndex($scope.fruitList, function(item) {
+        $scope.removeFunction = function(id) {
+            var index = findFirstIndex($scope.functionList, function(item) {
                 return item.id == id;
             });
-            $scope.fruitList.splice(index, 1);
+            $scope.functionList.splice(index, 1);
         };
         
         function findFirstIndex(array, func) {
@@ -31,24 +39,26 @@
             return -1;
         }
 
-        $scope.removeAllFruits = function() {
-            console.log('Remove all fruits');
-            $scope.fruitList = [];
+        $scope.removeAllFunctions = function() {
+            $scope.functionList = [];
         };
         
-        $scope.buyNewFruit = function() {
-            console.log('Buy new fruit');
+        $scope.createNewFunction = function() {
             var protoIndex = Math.floor(Math.random() * $scope.prototypes.length);
-            addFruit(
-                $scope.nextFruitId, 
-                $scope.prototypes[protoIndex] + $scope.nextFruitId, 
-                { a: 1, b: 3 }
+            addFunction(
+                $scope.nextFuncId, 
+                $scope.prototypes[protoIndex]
             );
-            $scope.nextFruitId++;
+            $scope.nextFuncId++;
         };
         
-        function addFruit(id, name, attrs) {
-            $scope.fruitList.push({id: id, text: name, attrs: attrs, status: true } );
+        function addFunction(id, proto) {
+            var attrs = {};
+            for (var i = 0; i < proto.args.length; i++) {
+                var val = (i == 0) ? 1 : 0;
+                attrs[proto.args[i]] = val;
+            }
+            $scope.functionList.push({id: id, text: proto.functionType, attrs: attrs, status: true } );
         }
         
     }
