@@ -7,7 +7,7 @@
         
     function vgStatusDecorator() {
         var decorator = {
-            restrict: 'A',
+            restrict: 'E',
             scope: {
                 status: '='
             },

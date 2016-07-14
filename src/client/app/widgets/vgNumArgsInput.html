@@ -1,5 +1,4 @@
-<div class="vgNumArgsInput">
-    <span data-ng-repeat="(key, value) in keyValuePairs">
-        {{key}}: <input type="number" data-ng-model="keyValuePairs[key]"/>
-    </span>
+<div class="form-group input-group" data-ng-repeat="(key, value) in keyValuePairs">
+    <span class="input-group-addon" id="{{key}}">{{key}}</span>
+    <input class="form-control" type="number" data-ng-model="keyValuePairs[key]" aria-describedby="{{key}}"/>
 </div>
