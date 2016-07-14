@@ -1,0 +1,7 @@
+<vg-list-container data-create-item-text="{{createItemText}}" data-click-create-item="clickCreateItem()" data-remove-all-text="{{removeAllText}}" data-click-remove-all-items="clickRemoveAllItems()">
+    <vg-list-item data-ng-repeat="item in itemList" data-item-id="{{item.id}}" data-remove-item-text="{{removeItemText}}" data-click-remove-item="clickRemoveItem({itemId:itemId})">
+        <div data-vg-status-decorator data-status="item.status" />
+        {{item.text}}
+        <vg-num-args-input-widget data-key-value-pairs="item.attrs"/>
+    </vg-list-item>
+</vg-list-container>

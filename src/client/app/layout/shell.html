@@ -7,13 +7,16 @@
         <div data-ng-view></div>
 
         <div data-ng-controller="Shell">
-            <vg-list-container data-create-item-text="New Fruit" data-click-create-item="buyNewFruit()" data-remove-all-text="Eat All The Fruit" data-click-remove-all-items="removeAllFruits()">
-                <vg-list-item data-ng-repeat="fruit in fruitList" data-item-id="{{fruit.id}}" data-remove-item-text="Eat This" data-click-remove-item="removeFruit(itemId)">
-                    <div data-vg-status-decorator data-status="fruit.status" />
-                    {{fruit.name}}
-                    <vg-num-args-input-widget data-key-value-pairs="fruit.attrs"/>
-                </vg-list-item>
-            </vg-list-container>
+
+            <vg-list-widget 
+                data-item-list="fruitList"
+                data-create-item-text="New Fruit"
+                data-remove-item-text="Eat This"
+                data-remove-all-text="Eat All The Fruit"
+                data-click-create-item="buyNewFruit()"
+                data-click-remove-item="removeFruit(itemId)"
+                data-click-remove-all-items="removeAllFruits()"
+                />
         </div>
 
     </section>

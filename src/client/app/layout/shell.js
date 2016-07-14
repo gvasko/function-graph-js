@@ -48,7 +48,7 @@
         };
         
         function addFruit(id, name, attrs) {
-            $scope.fruitList.push({id: id, name: name, attrs: attrs, status: true } );
+            $scope.fruitList.push({id: id, text: name, attrs: attrs, status: true } );
         }
         
     }
