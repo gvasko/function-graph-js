@@ -6,10 +6,12 @@
         Hello, Section!
         <div data-ng-view></div>
 
-        <vg-list-widget>
-            <vg-list-item title="A">Apple</vg-list-item>
-            <vg-list-item title="B">Banana</vg-list-item>
-        </vg-list-widget>
+        <div data-ng-controller="Shell">
+            <vg-list-widget click-create-item="buyNewFruit()" click-remove-all-items="removeAllFruits()">
+                <vg-list-item data-item-id="A" click-remove-item="removeFruit(itemId)">Apple</vg-list-item>
+                <vg-list-item data-item-id="B" click-remove-item="removeFruit(itemId)">Banana</vg-list-item>
+            </vg-list-widget>
+        </div>
 
     </section>
 </div>
