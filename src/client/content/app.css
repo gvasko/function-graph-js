@@ -1,1 +1,11 @@
 
+.vg-list-item {
+    padding: 5px;
+    margin: 5px;
+    background: #AAAACC;
+    border-radius: 5px;
+}
+
+.vg-btn-group {
+    padding: 5px;
+}

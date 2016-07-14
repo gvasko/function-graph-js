@@ -42,7 +42,7 @@
             addFruit(
                 $scope.nextFruitId, 
                 $scope.prototypes[protoIndex] + $scope.nextFruitId, 
-                { size: 1, weight: 3 }
+                { a: 1, b: 3 }
             );
             $scope.nextFruitId++;
         };
