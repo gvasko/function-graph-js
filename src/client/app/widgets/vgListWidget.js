@@ -11,8 +11,18 @@
             transclude: true,
             scope: {
                 clickCreateItem: '&',
-                clickRemoveAllItems: '&'
+                clickRemoveAllItems: '&',
+                createItemText: '@',
+                removeAllText: '@'
             },
+            controller: ['$scope', function($scope) {
+                if (angular.isUndefined($scope.createItemText)) {
+                    $scope.createItemText = 'Create';
+                }
+                if (angular.isUndefined($scope.removeAllText)) {
+                    $scope.removeAllText = 'Remove All';
+                }
+            }],
             templateUrl: 'app/widgets/vgListWidget.html'
         };
 

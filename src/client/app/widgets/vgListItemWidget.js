@@ -11,8 +11,14 @@
             transclude: true,
             scope: {
                 itemId: '@',
-                clickRemoveItem: "&"
+                clickRemoveItem: "&",
+                removeItemText: "@"
             },
+            controller: ['$scope', function($scope) {
+                if (angular.isUndefined($scope.removeItemText)) {
+                    $scope.removeItemText = 'Remove Item';
+                }
+            }],
             templateUrl: 'app/widgets/vgListItem.html'
         };
 

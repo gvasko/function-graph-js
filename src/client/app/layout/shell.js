@@ -16,7 +16,6 @@
         
         $scope.removeFruit = function(id) {
             console.log('Remove fruit: ' + id);
-            //var  = $.grep($scope.fruitList, 
             var index = findFirstIndex($scope.fruitList, function(item) {
                 return item.id == id;
             });

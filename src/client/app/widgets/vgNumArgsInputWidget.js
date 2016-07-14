@@ -11,9 +11,6 @@
             scope: {
                 keyValuePairs: "="
             },
-            controller: ['$scope', function($scope) {
-                console.log('keyValuePairs: ' + $scope.keyValuePairs);
-            }],
             templateUrl: 'app/widgets/vgNumArgsInputWidget.html'
         };
         
