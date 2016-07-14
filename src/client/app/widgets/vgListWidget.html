@@ -1,8 +1,8 @@
 <vg-list-container data-create-item-text="{{createItemText}}" data-click-create-item="clickCreateItem()" data-remove-all-text="{{removeAllText}}" data-click-remove-all-items="clickRemoveAllItems()">
     <vg-list-item data-ng-repeat="item in itemList" data-item-id="{{item.id}}" data-remove-item-text="{{removeItemText}}" data-click-remove-item="clickRemoveItem({itemId:itemId})">
-        <div class="form-group input-group">
+        <div class="form-group">
             <vg-status-decorator data-status="item.status"/>
-            <span class="input-group-addon">{{item.text}}</span>
+            <label>{{item.text}}</label>
         </div>
         <vg-num-args-input-widget data-key-value-pairs="item.attrs"/>
     </vg-list-item>
