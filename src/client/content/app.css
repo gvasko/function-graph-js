@@ -2,8 +2,15 @@
 .vg-list-item {
     padding: 5px;
     margin: 5px;
-    background: #AAAACC;
     border-radius: 5px;
+}
+
+.vg-list-item-enabled {
+    background: #AAAACC;
+}
+
+.vg-list-item-disabled {
+    background: #CCCCCC;
 }
 
 .vg-list-item-label {

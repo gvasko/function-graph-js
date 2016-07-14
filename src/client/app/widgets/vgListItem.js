@@ -11,6 +11,7 @@
             transclude: true,
             scope: {
                 itemId: '@',
+                status: '=',
                 clickRemoveItem: "&",
                 removeItemText: "@"
             },

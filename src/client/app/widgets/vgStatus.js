@@ -3,15 +3,15 @@
     
     angular
         .module('app.widgets')
-        .directive('vgStatusDecorator', vgStatusDecorator);
+        .directive('vgStatus', vgStatus);
         
-    function vgStatusDecorator() {
+    function vgStatus() {
         var decorator = {
             restrict: 'E',
             scope: {
                 status: '='
             },
-            templateUrl: 'app/widgets/vgStatusDecorator.html'
+            templateUrl: 'app/widgets/vgStatus.html'
         };
         
         return decorator;
