@@ -3,9 +3,9 @@
 
     angular
         .module('app.widgets')
-        .directive('vgListWidget', vgListWidget);
+        .directive('vgListContainer', vgListContainer);
         
-    function vgListWidget() {
+    function vgListContainer() {
         var directive = {
             restrict: 'E',
             transclude: true,
@@ -23,7 +23,7 @@
                     $scope.removeAllText = 'Remove All';
                 }
             }],
-            templateUrl: 'app/widgets/vgListWidget.html'
+            templateUrl: 'app/widgets/vgListContainer.html'
         };
 
         return directive;
