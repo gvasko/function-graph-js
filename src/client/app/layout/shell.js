@@ -40,9 +40,17 @@
         $scope.buyNewFruit = function() {
             console.log('Buy new fruit');
             var protoIndex = Math.floor(Math.random() * $scope.prototypes.length);
-            $scope.fruitList.push({id: $scope.nextFruitId, name: $scope.prototypes[protoIndex] + $scope.nextFruitId});
+            addFruit(
+                $scope.nextFruitId, 
+                $scope.prototypes[protoIndex] + $scope.nextFruitId, 
+                { size: 1, weight: 3 }
+            );
             $scope.nextFruitId++;
         };
+        
+        function addFruit(id, name, attrs) {
+            $scope.fruitList.push({id: id, name: name, attrs: attrs } );
+        }
         
     }
     

@@ -1,10 +1,9 @@
-(function(angular) {
+(function() {
     'use strict';
 
     angular
         .module('app.widgets')
-        .directive('vgListWidget', vgListWidget)
-        .directive('vgListItem', vgListItem);
+        .directive('vgListWidget', vgListWidget);
         
     function vgListWidget() {
         var directive = {
@@ -20,19 +19,5 @@
         return directive;
     }
 
-    function vgListItem() {
-        var directive = {
-            restrict: 'E',
-            transclude: true,
-            scope: {
-                itemId: '@',
-                clickRemoveItem: "&"
-            },
-            templateUrl: 'app/widgets/vgListItem.html'
-        };
 
-        return directive;
-    }
-
-
-})(window.angular);
+})();
