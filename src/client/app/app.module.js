@@ -3,6 +3,7 @@
     
     angular.module('app', [
         'app.widgets',
-        'app.layout'
+        'app.layout',
+        'app.document'
     ]);
 })(window.angular);

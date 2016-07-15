@@ -5,60 +5,40 @@
         .module('app.layout')
         .controller('Shell', Shell);
         
-    Shell.$inject = ['$scope'];
+    Shell.$inject = ['$scope', 'MathFunc', 'Document'];
     
-    function Shell($scope) {
-        $scope.nextFuncId = 0;
+    function Shell($scope, MathFunc, Document) {
+        // TODO: temporarily this belongs to the model, not to the viewmodel
+        $scope.document = Document.createDocument();
         
-        $scope.functionList = [];
-        
-        $scope.prototypes = [
-            {
-                functionType: 'a*x+b',
-                args: ['a', 'b']
-            },
-            {
-                functionType: 'a*x^2+b*x+c',
-                args: ['a', 'b', 'c']
-            }
+        $scope.funcImpls = [
+            MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
+            MathFunc.createFuncImpl('Quadratic', ['a', 'b', 'c'], function(params, x) { return params['a'] * x * x + params['b'] * x + params['c']; }),
+            MathFunc.createFuncImpl('Cubic', ['a', 'b', 'c', 'd'], function(params, x) { return params['a'] * x * x * x + params['b'] * x * x + params['c'] * x + params['d']; })
         ];
         
-        $scope.removeFunction = function(id) {
-            var index = findFirstIndex($scope.functionList, function(item) {
-                return item.id == id;
-            });
-            $scope.functionList.splice(index, 1);
+        $scope.removeMathFunc = function(id) {
+            $scope.document.mathFuncList.remove(id);
         };
         
-        function findFirstIndex(array, func) {
-            for (var i = 0; i < array.length; i++) {
-                if (func(array[i])) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        $scope.removeAllFunctions = function() {
-            $scope.functionList = [];
+        $scope.removeAllMathFunc = function() {
+            $scope.document.mathFuncList.removeAll();
         };
         
-        $scope.createNewFunction = function() {
-            var protoIndex = Math.floor(Math.random() * $scope.prototypes.length);
-            addFunction(
-                $scope.nextFuncId, 
-                $scope.prototypes[protoIndex]
-            );
-            $scope.nextFuncId++;
+        $scope.createNewMathFunc = function() {
+            var implIndex = Math.floor(Math.random() * $scope.funcImpls.length);
+            var funcImpl = $scope.funcImpls[implIndex];
+            var funcObj = MathFunc.createFuncObj(funcImpl, getDefaultParams(funcImpl.args));
+            $scope.document.mathFuncList.add(funcObj);
         };
         
-        function addFunction(id, proto) {
-            var attrs = {};
-            for (var i = 0; i < proto.args.length; i++) {
+        function getDefaultParams(args) {
+            var params = {};
+            for (var i = 0; i < args.length; i++) {
                 var val = (i == 0) ? 1 : 0;
-                attrs[proto.args[i]] = val;
+                params[args[i]] = val;
             }
-            $scope.functionList.push({id: id, text: proto.functionType, attrs: attrs, status: true } );
+            return params;
         }
         
     }

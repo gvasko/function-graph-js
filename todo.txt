@@ -9,8 +9,18 @@ app/
                 AbstractFunction 
                 DisplayAttributes: color, pattern
     FunctionView
+        Table
         Chart
         Grid
         
         
+Data
+    Document
+        FunctionList
+        ViewSettings: 
+            function: enabled, color, line pattern
+            table/grid: parameter-domain, step (several configurations stored beforehand)
+            chart: viewport (several configurations stored beforehand)
+
+
 +testing
