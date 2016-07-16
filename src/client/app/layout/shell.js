@@ -9,6 +9,7 @@
     
     function Shell($scope, MathFunc, ViewDocument) {
         $scope.document = ViewDocument.createDocument();
+        $scope.tmpDomain = [-2, -1, 0, 1, 2];
         
         $scope.funcImpls = [
             MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
@@ -28,7 +29,8 @@
             var implIndex = Math.floor(Math.random() * $scope.funcImpls.length);
             var funcImpl = $scope.funcImpls[implIndex];
             var funcObj = MathFunc.createFuncObj(funcImpl, getDefaultParams(funcImpl.args));
-            $scope.document.mathFuncList.add(funcObj);
+            var id = $scope.document.mathFuncList.add(funcObj);
+            funcObj.signature.name += id;
         };
         
         function getDefaultParams(args) {

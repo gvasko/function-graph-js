@@ -20,3 +20,44 @@
 .vg-btn-group {
     padding: 5px;
 }
+
+.func-table {
+    width: 100%;
+    background: #FFF;
+    margin: 20px;
+    border-collapse: separate;
+    border-spacing: 5px;
+}
+
+
+.func-table th {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #AAAACC;
+    text-align: center;
+}
+
+.func-table th:first-child {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #FFF;
+    text-align: center;
+}
+
+.func-table td:first-child {
+    font-weight: bold;
+}
+
+.func-table td {
+    padding: 5px;
+    text-align: center;
+}
+
+.tab-message {
+    margin-top: 100px;
+    text-align: center;
+    font-style: italic;
+    color: #888888;
+}

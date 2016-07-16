@@ -33,12 +33,13 @@
         var funcObj = {
             
             parameters: parameters,
+            signature: {
+                name: funcImpl.name,
+                args: funcImpl.args
+            },
             
             getSignature: function() {
-                return {
-                    name: funcImpl.name,
-                    args: funcImpl.args
-                };
+                return this.signature;
             },
             
             getValueAt: function(x) {

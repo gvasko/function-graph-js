@@ -2,11 +2,11 @@
     <header>
         Hello, Header!
     </header>
-    <section>
+    <section data-ng-controller="Shell">
         Hello, Section!
         <div data-ng-view></div>
 
-        <div class="col-sm-6" data-ng-controller="Shell">
+        <div class="col-sm-6">
 
             <vg-list-widget 
                 data-item-list="document.mathFuncList.mathFuncList"
@@ -20,11 +20,40 @@
         </div>
         <div class="col-sm-6">
             <ul class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#">Table</a></li>
-                <li role="presentation"><a href="#">Grid</a></li>
-                <li role="presentation"><a href="#">Chart</a></li>
-                
+                <li class="active"><a data-toggle="tab" href="#Table">Table</a></li>
+                <li><a data-toggle="tab" href="#Grid">Grid</a></li>
+                <li><a data-toggle="tab" href="#Chart">Chart</a></li>
             </ul>
+            
+            <div class="tab-content">
+                <div id="Table" class="tab-pane fade in active">
+                    <div class="tab-message" ng-if="document.mathFuncList.isEmpty()">
+                        Function list is empty
+                    </div>
+                    <table class="func-table" ng-if="!document.mathFuncList.isEmpty()">
+                        <tr>
+                            <th>x</td>
+                            <th ng-repeat="mathFunc in document.mathFuncList.mathFuncList" ng-if="mathFunc.status">{{mathFunc.func.signature.name}}</td>
+                        </tr>
+                        <tr ng-repeat="x in tmpDomain">
+                            <td>{{x}}</td>
+                            <td ng-repeat="mathFunc in document.mathFuncList.mathFuncList" ng-if="mathFunc.status">{{mathFunc.func.getValueAt(x)}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="Grid" class="tab-pane fade">
+                    Grid
+                    <div class="tab-message" ng-if="document.mathFuncList.isEmpty()">
+                        Function list is empty
+                    </div>
+                </div>
+                <div id="Chart" class="tab-pane fade">
+                    Chart
+                    <div class="tab-message" ng-if="document.mathFuncList.isEmpty()">
+                        Function list is empty
+                    </div>
+                </div>
+            </div>
         </div>
 
     </section>

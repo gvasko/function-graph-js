@@ -24,6 +24,7 @@
         this.add = addMathFunc;
         this.remove = removeMathFunc;
         this.removeAll = removeAllMathFunc;
+        this.isEmpty = isEmpty;
 
         //private
         
@@ -54,6 +55,10 @@
         
         function removeAllMathFunc() {
             this.mathFuncList.length = 0;
+        }
+        
+        function isEmpty() {
+            return this.mathFuncList.length == 0;
         }
         
         function getNextId() {
