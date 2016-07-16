@@ -20,41 +20,40 @@
     function MathFuncListObject() {
 
         // public
-        this.getAll = getMathFuncList;
+        this.getAll = getCopyOfMathFuncList;
         this.add = addMathFunc;
         this.remove = removeMathFunc;
         this.removeAll = removeAllMathFunc;
 
         //private
         
-        var mathFuncList = [];
+        this.mathFuncList = [];
         var nextId = 0;
 
-        function getMathFuncList() {
-            // TODO: defensive copy
-            return mathFuncList;
+        function getCopyOfMathFuncList() {
+            return this.mathFuncList.slice();
         }
         
         function addMathFunc(mathFunc) {
             var id = getNextId();
-            mathFuncList.push({id: id, func: mathFunc});
+            this.mathFuncList.push({id: id, func: mathFunc, status: true});
             return id;
         }
         
         function removeMathFunc(id) {
-            var index = findFirstIndex(mathFuncList, function(item) {
+            var index = findFirstIndex(this.mathFuncList, function(item) {
                 return item.id == id;
             });
             
             if (index == -1) {
-                throw 'Internal error: no such mathFunc id.';
+                throw 'Internal error: no such mathFunc id: ' + id;
             }
             
-            mathFuncList.splice(index, 1);
+            this.mathFuncList.splice(index, 1);
         }
         
         function removeAllMathFunc() {
-            mathFuncList = [];
+            this.mathFuncList.length = 0;
         }
         
         function getNextId() {

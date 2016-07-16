@@ -5,11 +5,10 @@
         .module('app.layout')
         .controller('Shell', Shell);
         
-    Shell.$inject = ['$scope', 'MathFunc', 'Document'];
+    Shell.$inject = ['$scope', 'MathFunc', 'ViewDocument'];
     
-    function Shell($scope, MathFunc, Document) {
-        // TODO: temporarily this belongs to the model, not to the viewmodel
-        $scope.document = Document.createDocument();
+    function Shell($scope, MathFunc, ViewDocument) {
+        $scope.document = ViewDocument.createDocument();
         
         $scope.funcImpls = [
             MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
@@ -40,7 +39,7 @@
             }
             return params;
         }
-        
+
     }
     
 })();

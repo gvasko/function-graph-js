@@ -32,6 +32,8 @@
         
         var funcObj = {
             
+            parameters: parameters,
+            
             getSignature: function() {
                 return {
                     name: funcImpl.name,
@@ -40,19 +42,22 @@
             },
             
             getValueAt: function(x) {
-                return funcImpl.func(parameters, x);
+                return funcImpl.func(this.parameters, x);
             },
             
             getParameter: function(name) {
-                checkParameterName(parameters, name);
-                return parameters[name];
+                checkParameterName(this.parameters, name);
+                return this.parameters[name];
             },
             
             setParameter: function(name, value) {
-                checkParameterName(parameters, name);
-                parameters[name] = value;
-            }
+                checkParameterName(this.parameters, name);
+                this.parameters[name] = value;
+            },
             
+            getParametersObj: function() {
+                return this.parameters;
+            }
         };
         
         return funcObj;
