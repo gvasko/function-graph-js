@@ -9,11 +9,18 @@
         <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="/src/client/content/app.css" rel="stylesheet" />
 
+    </head>
+    <body>
+        <div>
+            <div data-ng-include="'app/layout/shell.html'"></div>
+        </div>
+    
         <script src="/bower_components/jquery/dist/jquery.js"></script>
         <script src="/bower_components/angular/angular.js"></script>
         <script src="/bower_components/angular-route/angular-route.js"></script>
         <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-        
+        <script src="/bower_components/highcharts/highcharts.js"></script>
+
         <script src="/src/client/app/app.module.js"></script>
 
         <script src="/src/client/app/widgets/widgets.module.js"></script>
@@ -22,21 +29,15 @@
         <script src="/src/client/app/widgets/vgNumArgsInput.js"></script>
         <script src="/src/client/app/widgets/vgStatus.js"></script>
         <script src="/src/client/app/widgets/vgListWidget.js"></script>
-        
-        <script src="/src/client/app/layout/layout.module.js"></script>
-        <script src="/src/client/app/layout/shell.js"></script>
+        <script src="/src/client/app/widgets/vgFuncChart.js"></script>
         
         <script src="/src/client/app/document/document.module.js"></script>
         <script src="/src/client/app/document/ViewDocument.js"></script>
         <script src="/src/client/app/document/MathFunc.js"></script>
         <script src="/src/client/app/document/MathFuncList.js"></script>
-        
-    </head>
-    <body>
-        <div>
-            <div data-ng-include="'app/layout/shell.html'"></div>
-        </div>
-    
 
+        <script src="/src/client/app/layout/layout.module.js"></script>
+        <script src="/src/client/app/layout/shell.js"></script>
+        
     </body>
 </html>
