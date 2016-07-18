@@ -1,25 +1,47 @@
-$(function() {
+(function() {
     'use strict';
     
     angular
         .module('app.widgets')
         .directive('vgFuncChart', vgFuncChart);
-        
+
     function vgFuncChart() {
-        console.log('ALMALMALMALMALMAMA111111');
         var directive = {
             restrict: 'E',
-            template: '<div></div>',
+            // FIXME: TODO: should be parameterizable
+            template: '<div id="abcd"></div>',
             scope: {
-                options: '='
+                title: '@',
+                // TODO: avoid categories, use ticks
+                categories: '=',
+                funcValues: '='
+//                domain: '=',
+//                values: '='
             },
-            link: function(scope, element) {
-                console.log('ALMALMALMALMALMAMA222222');
-                Highcharts.chart(element[0], scope.options);
+            link: function(scope, element, attrs) {
+                //var subDiv = element[0].childNodes[0];
+                var chartId = 'abcd';
+                var chart = new Highcharts.Chart({
+                    chart: {
+                        renderTo: /*scope.*/chartId
+                    },
+                    title: {
+                        text: scope.title
+                    },
+                    xAxis: {
+                        categories: scope.categories
+                    },
+                    series: scope.funcValues
+                });
+                scope.$watch('funcValues', function(newValue) {
+                    //chart.series.push(newValue[0]);
+                    //chart.series.push(newValue[1]);
+                    //chart.redraw();
+                    console.log('vgFuncChart updated');
+                }, true);
             }
         };
-        console.log('ALMALMALMALMALMAMA333333');
         return directive;
     }
     
-});
+})();

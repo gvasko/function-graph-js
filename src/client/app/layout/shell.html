@@ -37,7 +37,7 @@
                         </tr>
                         <tr ng-repeat="x in tmpDomain">
                             <td>{{x}}</td>
-                            <td ng-repeat="mathFunc in document.mathFuncList.mathFuncList" ng-if="mathFunc.status">{{mathFunc.func.getValueAt(x)}}</td>
+                            <td ng-repeat="mathFunc in document.mathFuncList.mathFuncList" ng-if="mathFunc.status">{{funcValues}}</td>
                         </tr>
                     </table>
                 </div>
@@ -51,8 +51,8 @@
                     <div class="tab-message" ng-if="document.mathFuncList.isEmpty()">
                         Function list is empty
                     </div>
-                    Alma?
-                    <vg-func-chart options="chartOptions">Placeholder</vg-func-chart>
+                    <vg-func-chart title="Graph" categories="tmpDomain" func-values="funcValues" chart-id="aaa">Chart not working</vg-func-chart>
+
                 </div>
             </div>
         </div>

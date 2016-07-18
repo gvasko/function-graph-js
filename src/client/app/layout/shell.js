@@ -10,6 +10,10 @@
     function Shell($scope, MathFunc, ViewDocument) {
         $scope.document = ViewDocument.createDocument();
         $scope.tmpDomain = [-2, -1, 0, 1, 2];
+        $scope.funcValues = [
+                        { name: 'Linear1', data: [-2, -1, 0, 1, 2] },
+                        { name: 'Quadratic2', data: [4, 1, 0, 1, 4] }
+                    ];
         
         $scope.funcImpls = [
             MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
@@ -17,20 +21,6 @@
             MathFunc.createFuncImpl('Cubic', ['a', 'b', 'c', 'd'], function(params, x) { return params['a'] * x * x * x + params['b'] * x * x + params['c'] * x + params['d']; })
         ];
         
-        $scope.chartOptions = {
-            title: {
-                text: 'Temperature data'
-            },
-            xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-
-            series: [{
-                data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
-            }]
-        };
-
         $scope.removeMathFunc = function(id) {
             $scope.document.mathFuncList.remove(id);
         };
@@ -45,6 +35,7 @@
             var funcObj = MathFunc.createFuncObj(funcImpl, getDefaultParams(funcImpl.args));
             var id = $scope.document.mathFuncList.add(funcObj);
             funcObj.signature.name += id;
+            updateFuncValueCache();
         };
         
         function getDefaultParams(args) {
@@ -54,6 +45,10 @@
                 params[args[i]] = val;
             }
             return params;
+        }
+        
+        function updateFuncValueCache() {
+            
         }
         
     }

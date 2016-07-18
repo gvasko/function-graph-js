@@ -13,6 +13,6 @@
     "angular-route": "1.5.x",
     "bootstrap": "3.3.x",
     "jquery": "2.2.x",
-    "highcharts": "v4.0.4"
+    "highcharts": "v4.2.5"
   }
 }
