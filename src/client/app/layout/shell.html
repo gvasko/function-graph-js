@@ -9,7 +9,7 @@
         <div class="col-sm-6">
 
             <vg-list-widget 
-                data-item-list="document.mathFuncList.mathFuncList"
+                data-item-list="vm.mathFuncList.mathFuncList"
                 data-create-item-text="New Function"
                 data-remove-item-text="Remove"
                 data-remove-all-text="Remove All"
@@ -27,28 +27,28 @@
             
             <div class="tab-content">
                 <div id="Table" class="tab-pane fade in active">
-                    <div class="tab-message" ng-if="document.mathFuncList.isEmpty()">
+                    <div class="tab-message" ng-if="vm.calculatedValues.keys().isEmpty()">
                         Function list is empty
                     </div>
-                    <table class="func-table" ng-if="!document.mathFuncList.isEmpty()">
+                    <table class="func-table" ng-if="!vm.calculatedValues.keys().isEmpty()">
                         <tr>
                             <th>x</td>
-                            <th ng-repeat="mathFunc in document.mathFuncList.mathFuncList" ng-if="mathFunc.status">{{mathFunc.func.signature.name}}</td>
+                            <th ng-repeat="mathFuncName in vm.calculatedValues.keys()" ng-if="mathFunc.status">{{mathFuncName}}</td>
                         </tr>
                         <tr ng-repeat="x in tmpDomain">
                             <td>{{x}}</td>
-                            <td ng-repeat="mathFunc in document.mathFuncList.mathFuncList" ng-if="mathFunc.status">{{funcValues}}</td>
+                            <td ng-repeat="y in vm.calculatedValues['{{mathFuncName}}']" ng-if="mathFunc.status">{{y}}</td>
                         </tr>
                     </table>
                 </div>
                 <div id="Grid" class="tab-pane fade">
                     Grid
-                    <div class="tab-message" ng-if="document.mathFuncList.isEmpty()">
+                    <div class="tab-message" ng-if="vm.calculatedValues.keys().isEmpty()">
                         Function list is empty
                     </div>
                 </div>
                 <div id="Chart" class="tab-pane fade">
-                    <div class="tab-message" ng-if="document.mathFuncList.isEmpty()">
+                    <div class="tab-message" ng-if="vm.calculatedValues.keys().isEmpty()">
                         Function list is empty
                     </div>
                     <vg-func-chart title="Graph" categories="tmpDomain" func-values="funcValues" chart-id="aaa">Chart not working</vg-func-chart>

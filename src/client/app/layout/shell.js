@@ -8,12 +8,13 @@
     Shell.$inject = ['$scope', 'MathFunc', 'ViewDocument'];
     
     function Shell($scope, MathFunc, ViewDocument) {
-        $scope.document = ViewDocument.createDocument();
+        $scope.vm = ViewDocument.createDocument();
         $scope.tmpDomain = [-2, -1, 0, 1, 2];
         $scope.funcValues = [
                         { name: 'Linear1', data: [-2, -1, 0, 1, 2] },
                         { name: 'Quadratic2', data: [4, 1, 0, 1, 4] }
                     ];
+        $scope.calculatedValues = {};
         
         $scope.funcImpls = [
             MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
@@ -22,20 +23,19 @@
         ];
         
         $scope.removeMathFunc = function(id) {
-            $scope.document.mathFuncList.remove(id);
+            $scope.vm.mathFuncList.remove(id);
         };
         
         $scope.removeAllMathFunc = function() {
-            $scope.document.mathFuncList.removeAll();
+            $scope.vm.mathFuncList.removeAll();
         };
         
         $scope.createNewMathFunc = function() {
             var implIndex = Math.floor(Math.random() * $scope.funcImpls.length);
             var funcImpl = $scope.funcImpls[implIndex];
             var funcObj = MathFunc.createFuncObj(funcImpl, getDefaultParams(funcImpl.args));
-            var id = $scope.document.mathFuncList.add(funcObj);
+            var id = $scope.vm.mathFuncList.add(funcObj);
             funcObj.signature.name += id;
-            updateFuncValueCache();
         };
         
         function getDefaultParams(args) {
@@ -47,10 +47,10 @@
             return params;
         }
         
-        function updateFuncValueCache() {
-            
-        }
-        
+        $scope.$watch('vm', function(newValue) {
+            console.log('Document changed');
+            $scope.calculatedValues = $scope.vm.calculateValues($scope.tmpDomain);
+        }, true);
     }
     
 })();

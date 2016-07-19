@@ -19,6 +19,22 @@
 
     function ViewDocumentObject(MathFuncList) {
         this.mathFuncList = MathFuncList.createMathFuncList();
+        
+        this.calculateValues = calculateValues;
+    }
+    
+    function calculateValues(domainValues) {
+        var calculatedValues = {};
+        
+        this.mathFuncList.getAll().forEach(function(mathFunc) {
+            var values = [];
+            domainValues.forEach(function(x) {
+                values.push(mathFunc.func.getValueAt(x));
+            });
+            calculatedValues[mathFunc.func.getSignature().name] = values;
+        })
+        
+        return calculatedValues;
     }
     
 })();
