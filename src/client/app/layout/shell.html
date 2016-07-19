@@ -27,18 +27,21 @@
             
             <div class="tab-content">
                 <div id="Table" class="tab-pane fade in active">
-                    <div class="tab-message" ng-if="vm.calculatedValues.keys().isEmpty()">
+                    <div class="tab-message" ng-if="vm.calculatedValues.isEmpty()">
                         Function list is empty
                     </div>
-                    <table class="func-table" ng-if="!vm.calculatedValues.keys().isEmpty()">
+                    {{vm.calculatedValues.length}}
+                    <table class="func-table" ng-if="!vm.calculatedValues.isEmpty()">
                         <tr>
                             <th>x</td>
-                            <th ng-repeat="mathFuncName in vm.calculatedValues.keys()" ng-if="mathFunc.status">{{mathFuncName}}</td>
+                            <th ng-repeat="funcValues in vm.calculatedValues">{{name}}</td>
                         </tr>
+                        <!--
                         <tr ng-repeat="x in tmpDomain">
                             <td>{{x}}</td>
                             <td ng-repeat="y in vm.calculatedValues['{{mathFuncName}}']" ng-if="mathFunc.status">{{y}}</td>
                         </tr>
+                        -->
                     </table>
                 </div>
                 <div id="Grid" class="tab-pane fade">

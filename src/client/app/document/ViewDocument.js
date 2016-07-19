@@ -14,7 +14,7 @@
     function ViewDocumentServiceObject(MathFuncList) {
         this.createDocument = function() {
             return new ViewDocumentObject(MathFuncList);
-        }
+        };
     }
 
     function ViewDocumentObject(MathFuncList) {
@@ -24,15 +24,20 @@
     }
     
     function calculateValues(domainValues) {
-        var calculatedValues = {};
+        var calculatedValues = [];
         
         this.mathFuncList.getAll().forEach(function(mathFunc) {
-            var values = [];
-            domainValues.forEach(function(x) {
-                values.push(mathFunc.func.getValueAt(x));
-            });
-            calculatedValues[mathFunc.func.getSignature().name] = values;
-        })
+            if (mathFunc.status) {
+                var values = [];
+                domainValues.forEach(function(x) {
+                    values.push(mathFunc.func.getValueAt(x));
+                });
+                calculatedValues.push({
+                    name: mathFunc.func.getSignature().name,
+                    values: values
+                });
+            }
+        });
         
         return calculatedValues;
     }

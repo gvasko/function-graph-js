@@ -14,7 +14,7 @@
                         { name: 'Linear1', data: [-2, -1, 0, 1, 2] },
                         { name: 'Quadratic2', data: [4, 1, 0, 1, 4] }
                     ];
-        $scope.calculatedValues = {};
+        $scope.calculatedValues = [];
         
         $scope.funcImpls = [
             MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
@@ -49,7 +49,17 @@
         
         $scope.$watch('vm', function(newValue) {
             console.log('Document changed');
-            $scope.calculatedValues = $scope.vm.calculateValues($scope.tmpDomain);
+            var tmpValues = $scope.vm.calculateValues($scope.tmpDomain);
+            $scope.calculatedValues.length = 0;
+            tmpValues.forEach(function(values) {
+                $scope.calculatedValues.push(values);
+            });
+            console.log($scope.calculatedValues.length);
+        }, true);
+
+        $scope.$watch('calculatedValues', function(newValue) {
+            console.log('Calculation changed');
+            //$scope.$applyAsync();
         }, true);
     }
     
