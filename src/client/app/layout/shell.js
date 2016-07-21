@@ -14,7 +14,9 @@
                         { name: 'Linear1', data: [-2, -1, 0, 1, 2] },
                         { name: 'Quadratic2', data: [4, 1, 0, 1, 4] }
                     ];
-        $scope.calculatedValues = [];
+        // TODO: further view-models
+        $scope.chartValues = [];
+        $scope.tableValues = [];
         
         $scope.funcImpls = [
             MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
@@ -47,20 +49,54 @@
             return params;
         }
         
+        $scope.getNumber = function(n) {
+            var arr = new Array(n);
+            for (var i = 0; i < n; i++) {
+                arr.push(i);
+            }
+            return arr;
+        }
+        
         $scope.$watch('vm', function(newValue) {
             console.log('Document changed');
             var tmpValues = $scope.vm.calculateValues($scope.tmpDomain);
-            $scope.calculatedValues.length = 0;
-            tmpValues.forEach(function(values) {
-                $scope.calculatedValues.push(values);
-            });
-            console.log($scope.calculatedValues.length);
+            updateChartValues(tmpValues);
+            updateTableValues(tmpValues);
         }, true);
+        
+        function updateChartValues(tmpValues) {
+            $scope.chartValues.length = 0;
+            tmpValues.forEach(function(values) {
+                $scope.chartValues.push({
+                    name: values.name,
+                    data: values.values
+                });
+            });
+        }
+        
+        function updateTableValues(tmpValues) {
+            $scope.tableValues.length = 0;
+            // TODO: tmpDomain does not seem to be a good choice
+            for (var i = 0; i < $scope.tmpDomain.length; i++) {
+                var row = [];
+                row.push($scope.tmpDomain[i]);
+                tmpValues.forEach(function(f) {
+                    row.push(f.values[i]);
+                });
+                $scope.tableValues.push(row);
+            }
+        }
 
-        $scope.$watch('calculatedValues', function(newValue) {
-            console.log('Calculation changed');
+        $scope.$watch('chartValues', function(newValue) {
+            console.log('Chart data changed: ' + $scope.chartValues.length);
             //$scope.$applyAsync();
         }, true);
+
+        $scope.$watch('tableValues', function(newValue) {
+            console.log('Table data changed: ' + $scope.tableValues.length);
+            //$scope.$applyAsync();
+        }, true);
+        
     }
     
 })();

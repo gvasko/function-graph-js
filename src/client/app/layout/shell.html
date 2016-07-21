@@ -27,34 +27,30 @@
             
             <div class="tab-content">
                 <div id="Table" class="tab-pane fade in active">
-                    <div class="tab-message" ng-if="vm.calculatedValues.isEmpty()">
+                    <div class="tab-message" ng-if="tableValues.length == 0">
                         Function list is empty
                     </div>
-                    {{vm.calculatedValues.length}}
-                    <table class="func-table" ng-if="!vm.calculatedValues.isEmpty()">
+                    <table class="func-table" ng-if="tableValues.length != 0">
                         <tr>
                             <th>x</td>
-                            <th ng-repeat="funcValues in vm.calculatedValues">{{name}}</td>
+                            <th ng-repeat="funcValues in calculatedValues">{{funcValues.name}}</td>
                         </tr>
-                        <!--
-                        <tr ng-repeat="x in tmpDomain">
-                            <td>{{x}}</td>
-                            <td ng-repeat="y in vm.calculatedValues['{{mathFuncName}}']" ng-if="mathFunc.status">{{y}}</td>
+                        <tr ng-repeat="row in tableValues">
+                            <th ng-repeat="fValue in row track by $index">{{fValue}}</td>
                         </tr>
-                        -->
                     </table>
                 </div>
                 <div id="Grid" class="tab-pane fade">
                     Grid
-                    <div class="tab-message" ng-if="vm.calculatedValues.keys().isEmpty()">
+                    <div class="tab-message" ng-if="chartValues.length == 0">
                         Function list is empty
                     </div>
                 </div>
                 <div id="Chart" class="tab-pane fade">
-                    <div class="tab-message" ng-if="vm.calculatedValues.keys().isEmpty()">
+                    <div class="tab-message" ng-if="chartValues.length == 0">
                         Function list is empty
                     </div>
-                    <vg-func-chart title="Graph" categories="tmpDomain" func-values="funcValues" chart-id="aaa">Chart not working</vg-func-chart>
+                    <vg-func-chart title="Graph" ng-if="chartValues.length != 0" categories="tmpDomain" func-values="chartValues" chart-id="aaa">Chart not working</vg-func-chart>
 
                 </div>
             </div>
