@@ -77,6 +77,9 @@
         function updateTableValues(tmpValues) {
             $scope.tableValues.length = 0;
             // TODO: tmpDomain does not seem to be a good choice
+            if (tmpValues.length == 0) {
+                return;
+            }
             for (var i = 0; i < $scope.tmpDomain.length; i++) {
                 var row = [];
                 row.push($scope.tmpDomain[i]);
