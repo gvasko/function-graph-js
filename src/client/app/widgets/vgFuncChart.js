@@ -33,43 +33,52 @@
                     },
                     series: []
                 });
-                scope.$watch('funcValues', function(newValue) {
-                    deleteMissingSeries(chart, newValue);
-                    addNewSeries(chart, newValue);
-                    updateExistingSeries(chart, newValue);
+                
+                scope.$watch('funcValues', function(updatedSeriesList) {
+                    scope.deleteSeriesNotExistAnymoreIn(updatedSeriesList);
+                    scope.addSeriesNewIn(updatedSeriesList);
+                    scope.updateExistingSeriesFrom(updatedSeriesList);
                     console.log('vgFuncChart updated');
                 }, true);
+
+                scope.deleteSeriesNotExistAnymoreIn = function(newSeriesList) {
+                    chart.series.forEach(function(chartSeries) {
+                        var seriesPeer = findSeriesByNameIn(newSeriesList, chartSeries.name);
+                        var peerExists = (seriesPeer !== undefined);
+                        if (!peerExists) {
+                            chartSeries.remove();
+                        }
+                    });
+                };
+                
+                scope.addSeriesNewIn = function(newSeriesList) {
+                    newSeriesList.forEach(function(newSeries) {
+                        var chartSeries = findSeriesByNameIn(chart.series, newSeries.name);
+                        var chartSeriesDoesNotExist = (chartSeries === undefined);
+                        if (chartSeriesDoesNotExist) {
+                            chart.addSeries(newSeries);
+                        }
+                    });
+                };
+                
+                scope.updateExistingSeriesFrom = function(newSeriesList) {
+                    chart.series.forEach(function(chartSeries) {
+                        var seriesPeer = findSeriesByNameIn(newSeriesList, chartSeries.name);
+                        var peerDoesNotExist = (seriesPeer === undefined);
+                        if (peerDoesNotExist) {
+                            throw 'Series not found';
+                        }
+                        chartSeries.setData(seriesPeer.data);
+                    });
+                };
+                
             }
         };
         return directive;
     }
-    
-    function deleteMissingSeries(chart, newSeriesList) {
-        chart.series.forEach(function(currentOrig) {
-            var newSeries = newSeriesList.find(function(currentNew) { return currentOrig.name === currentNew.name });
-            if (newSeries === undefined) {
-                currentOrig.remove();
-            }
-        });
-    }
-    
-    function addNewSeries(chart, newSeriesList) {
-        newSeriesList.forEach(function(currentNew) {
-            var existingSeries = chart.series.find(function(currentOrig) { return currentOrig.name === currentNew.name });
-            if (existingSeries === undefined) {
-                chart.addSeries(currentNew);
-            }
-        });
-    }
-    
-    function updateExistingSeries(chart, newSeriesList) {
-        chart.series.forEach(function(currentOrig) {
-            var newSeries = newSeriesList.find(function(currentNew) { return currentOrig.name === currentNew.name });
-            if (newSeries === undefined) {
-                throw 'Series not found';
-            }
-            currentOrig.setData(newSeries.data);
-        });
+
+    function findSeriesByNameIn(array, name) {
+        return array.find(function(item) { return name === item.name });
     }
     
 })();
