@@ -19,6 +19,7 @@
     function createMathFuncImpl(name, args, func) {
         var impl = {
             name: name,
+            // TODO: rename params
             args: args,
             func: func
         };
