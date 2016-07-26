@@ -19,9 +19,9 @@
         $scope.tableValues = [];
         
         $scope.funcImpls = [
-            MathFunc.createFuncImpl('Linear', ['a', 'b'], function(params, x) { return params['a'] * x + params['b']; }),
-            MathFunc.createFuncImpl('Quadratic', ['a', 'b', 'c'], function(params, x) { return params['a'] * x * x + params['b'] * x + params['c']; }),
-            MathFunc.createFuncImpl('Cubic', ['a', 'b', 'c', 'd'], function(params, x) { return params['a'] * x * x * x + params['b'] * x * x + params['c'] * x + params['d']; })
+            MathFunc.createFuncImpl('Linear', ['a', 'b'], function(args, x) { return args['a'] * x + args['b']; }),
+            MathFunc.createFuncImpl('Quadratic', ['a', 'b', 'c'], function(args, x) { return args['a'] * x * x + args['b'] * x + args['c']; }),
+            MathFunc.createFuncImpl('Cubic', ['a', 'b', 'c', 'd'], function(args, x) { return args['a'] * x * x * x + args['b'] * x * x + args['c'] * x + args['d']; })
         ];
         
         $scope.removeMathFunc = function(id) {
@@ -35,18 +35,18 @@
         $scope.createNewMathFunc = function() {
             var implIndex = Math.floor(Math.random() * $scope.funcImpls.length);
             var funcImpl = $scope.funcImpls[implIndex];
-            var funcObj = MathFunc.createFuncObj(funcImpl, getDefaultParams(funcImpl.args));
+            var funcObj = MathFunc.createFuncObj(funcImpl, getDefaultArgs(funcImpl.params));
             var id = $scope.vm.mathFuncList.add(funcObj);
             funcObj.signature.name += id;
         };
         
-        function getDefaultParams(args) {
-            var params = {};
-            for (var i = 0; i < args.length; i++) {
+        function getDefaultArgs(params) {
+            var args = {};
+            for (var i = 0; i < params.length; i++) {
                 var val = (i == 0) ? 1 : 0;
-                params[args[i]] = val;
+                args[params[i]] = val;
             }
-            return params;
+            return args;
         }
         
         $scope.getNumber = function(n) {

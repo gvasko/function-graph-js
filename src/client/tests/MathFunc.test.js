@@ -22,7 +22,7 @@ describe('MathFuncTest', function() {
             var func = function() {};
             var funcImpl = mathFunc.createFuncImpl(name, params, func);
             expect(funcImpl.name).toBe(name);
-            expect(funcImpl.args).toBe(params);
+            expect(funcImpl.params).toBe(params);
             expect(funcImpl.func).toBe(func);
         });
 

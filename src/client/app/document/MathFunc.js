@@ -16,27 +16,26 @@
         this.createFuncObj = createMathFuncObj;
     }
     
-    function createMathFuncImpl(name, args, func) {
+    function createMathFuncImpl(name, params, func) {
         var impl = {
             name: name,
-            // TODO: rename params
-            args: args,
+            params: params,
             func: func
         };
         
         return impl;
     }
     
-    function createMathFuncObj(funcImpl, parameters) {
+    function createMathFuncObj(funcImpl, args) {
         
-        checkSignature(funcImpl.args, parameters);
+        checkSignature(funcImpl.params, args);
         
         var funcObj = {
             
-            parameters: parameters,
+            args: args,
             signature: {
                 name: funcImpl.name,
-                args: funcImpl.args
+                params: funcImpl.params
             },
             
             getSignature: function() {
@@ -44,38 +43,38 @@
             },
             
             getValueAt: function(x) {
-                return funcImpl.func(this.parameters, x);
+                return funcImpl.func(this.args, x);
             },
             
-            getParameter: function(name) {
-                checkParameterName(this.parameters, name);
-                return this.parameters[name];
+            getArgument: function(name) {
+                checkParameterName(this.args, name);
+                return this.args[name];
             },
             
-            setParameter: function(name, value) {
-                checkParameterName(this.parameters, name);
-                this.parameters[name] = value;
+            setArgument: function(name, value) {
+                checkParameterName(this.args, name);
+                this.args[name] = value;
             },
             
-            getParametersObj: function() {
-                return this.parameters;
+            getArgsObj: function() {
+                return this.args;
             }
         };
         
         return funcObj;
     }
     
-    function checkSignature(args, params) {
-        if (args.length !== Object.keys(params).length) {
+    function checkSignature(params, args) {
+        if (params.length !== Object.keys(args).length) {
             throw 'The number of actual parameters is incorrect';
         }
-        args.forEach(function(arg) {
-            checkParameterName(params, arg);
+        params.forEach(function(param) {
+            checkParameterName(args, param);
         });
     }
     
-    function checkParameterName(parameters, name) {
-        if (!(name in parameters)) {
+    function checkParameterName(args, name) {
+        if (!(name in args)) {
             throw 'No such parameter: ' + name;
         }
     }
